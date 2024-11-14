@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class movePlayer : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float speed;
 
-    public Rigidbody2D rb;
-    public Camera cam;
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
+    private Vector2 moveVelocity;
 
-    Vector2 movement;
-    Vector2 mousePos;
+    private bool facingRight;
 
-    // Update is called once per frame
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveVelocity = moveInput.normalized * speed;
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if(!facingRight && moveInput.x < 0)
+        {
+            Flip();
+        }
+        else if(facingRight && moveInput.x > 0)
+        {
+            Flip();
+        }
+
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
     }
 
-    
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
+    }
 }

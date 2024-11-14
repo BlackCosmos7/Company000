@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float speed;
 
-    //public GameObject hitEffect;
+    public float lifetime;
+    public float distance;
+    public int damage;
+    public LayerMask whatIsSolid;
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        //Destroy(effect, 5f);
-        Destroy(gameObject);
-    }
+     private void Update()
+     {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, whatIsSolid);
+        if(hitInfo.collider != null)
+        {
+            if (hitInfo.collider.CompareTag("Enemy"))
+            {
+                hitInfo.collider.GetComponent<Enemy>().TakeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
+     }
 }

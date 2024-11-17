@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6745637946163550337}
   - component: {fileID: 7528080785624125245}
   - component: {fileID: 8985900782136043361}
-  - component: {fileID: -4341419709691765150}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -76,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: e6896550b41c30d48bfa6b29f935565d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3808498319252f419a6512ab70b4f8c, type: 3}
   m_Color: {r: 1, g: 0, b: 0.8988271, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 12, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,8 +149,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 12, y: 12}
+    newSize: {x: 12, y: 12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -159,16 +158,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0929902, y: 1.1068194}
   m_EdgeRadius: 0
---- !u!114 &-4341419709691765150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4767511588936359741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87eb795b1c099d545a7e84e09d3ab420, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitEffect: {fileID: 7215149304144706890, guid: b78280f537a849342b24636f1eab6757, type: 3}

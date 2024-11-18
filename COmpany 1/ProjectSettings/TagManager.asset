@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Potion
   - Shield
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - Enemy
   - Solid
   - 

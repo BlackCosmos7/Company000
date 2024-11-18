@@ -11,6 +11,9 @@ public class GunShooting : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    private bool facingRight;
+    private Vector2 moveInput;
+
     void Update()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -29,6 +32,23 @@ public class GunShooting : MonoBehaviour
         {
             timeBtwShots -= Time.deltaTime;
         }
-        
+
+        if (!facingRight && moveInput.x < 0)
+        {
+            Flip();
+        }
+        else if (facingRight && moveInput.x > 0)
+        {
+            Flip();
+        }
+
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
     }
 }

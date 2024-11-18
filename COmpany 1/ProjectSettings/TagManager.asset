@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Points
   - Enemy
+  - Potion
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - Enemy
+  - Solid
   - 
   - 
   - 

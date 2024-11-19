@@ -14,10 +14,6 @@ public class movePlayer : MonoBehaviour
     public int health;
     public TextMeshProUGUI healthDisplay;
 
-    //[Header("Shield")]
-    //public GameObject shield;
-    //public Shield shieldTimer;
-
     [Header("Weapons")]
     public List<GameObject> unlockedWeapons;
     public GameObject[] allWeapons;
@@ -29,8 +25,6 @@ public class movePlayer : MonoBehaviour
 
     private bool facingRight;
 
-    
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,21 +35,22 @@ public class movePlayer : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput.normalized * speed;
 
-        if(!facingRight && moveInput.x < 0)
+        if (!facingRight && moveInput.x < 0)
         {
             Flip();
         }
-        else if(facingRight && moveInput.x > 0)
+        else if (facingRight && moveInput.x > 0)
         {
             Flip();
         }
 
-        if(health <= 0)
+        if (health <= 0)
         {
+            // Перезагружаем сцену, когда здоровье становится 0
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchWeapon();
         }
@@ -64,7 +59,6 @@ public class movePlayer : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-
     }
 
     void Flip()
@@ -77,23 +71,16 @@ public class movePlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Potion"))
+        if (other.CompareTag("Potion"))
         {
             ChangeHealth(5);
             Destroy(other.gameObject);
         }
-        //else if (other.CompareTag("Shield"))
-        //{
-        //    shield.SetActive(true);
-        //    shieldTimer.gameObject.SetActive(true);
-        //    shieldTimer.isCooldown = true;
-        //    Destroy(other.gameObject);
-        //}
-        else if(other.CompareTag("Weapon"))
+        else if (other.CompareTag("Weapon"))
         {
             for (int i = 0; i < allWeapons.Length; i++)
             {
-                if(other.name == allWeapons[i].name)
+                if (other.name == allWeapons[i].name)
                 {
                     unlockedWeapons.Add(allWeapons[i]);
                 }
@@ -109,14 +96,27 @@ public class movePlayer : MonoBehaviour
         healthDisplay.text = "HP: " + health;
     }
 
+    // Метод, который вызывается для нанесения урона игроку
+    public void TakeDamage(int damage)
+    {
+        health -= damage;  // Уменьшаем здоровье на полученный урон
+        healthDisplay.text = "HP: " + health;  // Обновляем отображение здоровья
+
+        // Проверяем, если здоровье игрока меньше или равно 0, то перезагружаем сцену
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Перезагрузка сцены
+        }
+    }
+
     public void SwitchWeapon()
     {
         for (int i = 0; i < unlockedWeapons.Count; i++)
         {
-            if(unlockedWeapons[i].activeInHierarchy)
+            if (unlockedWeapons[i].activeInHierarchy)
             {
                 unlockedWeapons[i].SetActive(false);
-                if(i != 0)
+                if (i != 0)
                 {
                     unlockedWeapons[i - 1].SetActive(true);
                     weaponIcon.sprite = unlockedWeapons[i - 1].GetComponent<SpriteRenderer>().sprite;

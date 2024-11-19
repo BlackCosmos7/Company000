@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     public delegate void PlayerDetected();
     public static event PlayerDetected OnPlayerDetected;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
         if (isPlayerInSight && !isAttacking)
         {
             Vector3 direction = (player.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, player.position) <= attackRange)
             {
@@ -51,10 +51,12 @@ public class EnemyAI : MonoBehaviour
         {
             isAttacking = true;
             Debug.Log("Enemy attacks player!");
-            Player playerScript = player.GetComponent<Player>();
+
+            // Получаем скрипт movePlayer у игрока
+            movePlayer playerScript = player.GetComponent<movePlayer>();
             if (playerScript != null)
             {
-                playerScript.TakeDamage(10f);
+                playerScript.TakeDamage(10);  // Наносим 10 единиц урона игроку
             }
             isAttacking = false;
         }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 100f;
-    public float damage = 10f;
+    public float health = 10f;
+    public float damage = 1f;
     private bool isDead = false;
 
     private Renderer enemyRenderer;
@@ -34,9 +34,10 @@ public class Enemy : MonoBehaviour
 
         isDead = true;
         enemyAnimator.SetTrigger("Die");
-        Destroy(gameObject, 2f);
-    }
 
+        // Уничтожаем объект сразу, без задержки
+        Destroy(gameObject);
+    }
     private void FlashRed()
     {
         StartCoroutine(FlashEffect());

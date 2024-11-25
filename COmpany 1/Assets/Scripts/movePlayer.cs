@@ -107,6 +107,8 @@ public class movePlayer : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // Перезагрузка сцены
         }
+
+        Debug.Log("Player health after damage: " + health);  // Логируем здоровье игрока после получения урона
     }
 
     public void SwitchWeapon()

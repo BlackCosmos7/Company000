@@ -99,7 +99,12 @@ public class EnemyAI : MonoBehaviour
             movePlayer playerScript = player.GetComponent<movePlayer>();
             if (playerScript != null)
             {
-                playerScript.TakeDamage(10);  // Наносим 10 единиц урона игроку
+                playerScript.TakeDamage(1);  // Наносим 1 единицу урона игроку
+                Debug.Log("Player health after attack: " + playerScript.health);  // Логируем здоровье игрока
+            }
+            else
+            {
+                Debug.LogError("Player script not found!");
             }
 
             // Завершаем атаку

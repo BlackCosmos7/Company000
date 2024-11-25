@@ -7,12 +7,10 @@ public class Enemy : MonoBehaviour
     private bool isDead = false;
 
     private Renderer enemyRenderer;
-    private Animator enemyAnimator;
 
     void Start()
     {
         enemyRenderer = GetComponent<Renderer>();
-        enemyAnimator = GetComponent<Animator>();
     }
 
     public void TakeDamage(float amount)
@@ -33,7 +31,6 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        enemyAnimator.SetTrigger("Die");
 
         // Уничтожаем объект сразу, без задержки
         Destroy(gameObject);

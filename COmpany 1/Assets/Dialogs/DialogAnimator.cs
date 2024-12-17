@@ -18,3 +18,4 @@ public class DialogAnimator : MonoBehaviour
         dm.EndDialog();
     }
 }
+

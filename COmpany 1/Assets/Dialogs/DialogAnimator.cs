@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class DialogAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public DialogAnimator startAnim;
+    public DialogManager dm;
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        
+        startAnim.SetBool("startOpen", true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerExit2D(Collider2D other)
     {
-        
+        startAnim.SetBool("startOpen", false);
+        dm.EndDialog();
     }
 }

@@ -47,14 +47,14 @@ public class movePlayer : MonoBehaviour
             Flip();
         }
 
-        //if(moveInput == 0)
-        //{
-        //    anim.SetBool("isRunning", false);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isRunning", true);
-        //}
+        if(moveInput == Vector2.zero)
+        {
+            anim.SetBool("isRunning", false);
+        }
+        else
+        {
+            anim.SetBool("isRunning", true);
+        }
 
         if (health <= 0)
         {

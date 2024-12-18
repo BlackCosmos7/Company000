@@ -25,8 +25,11 @@ public class movePlayer : MonoBehaviour
 
     private bool facingRight;
 
+    private Animator anim;
+
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,6 +46,15 @@ public class movePlayer : MonoBehaviour
         {
             Flip();
         }
+
+        //if(moveInput == 0)
+        //{
+        //    anim.SetBool("isRunning", false);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isRunning", true);
+        //}
 
         if (health <= 0)
         {

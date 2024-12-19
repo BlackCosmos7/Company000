@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
         tpActive = true;
     }
 
-    private void OnTriggerEnter2D(Colider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
 

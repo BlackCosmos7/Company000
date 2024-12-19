@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
 
     private Renderer enemyRenderer;
 
+    public delegate void DeathHandler(GameObject enemy);
+    public event DeathHandler OnDeath;
+
     void Start()
     {
         enemyRenderer = GetComponent<Renderer>();
@@ -31,6 +34,8 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+
+        OnDeath?.Invoke(gameObject);
 
         // Уничтожаем объект сразу, без задержки
         Destroy(gameObject);

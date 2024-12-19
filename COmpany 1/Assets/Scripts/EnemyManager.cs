@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
         if (spawnPoint.childCount == 0)
         {
-            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         }
     }
 }

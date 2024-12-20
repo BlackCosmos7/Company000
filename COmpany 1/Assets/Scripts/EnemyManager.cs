@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Префаб врага
-    public Transform[] spawnPoints; // Точки для спавна врагов
-    public float spawnInterval = 5f; // Интервал между спавнами врагов
-    public int maxEnemies = 10; // Максимальное количество врагов на сцене
+    public GameObject[] enemyPrefabs; // Массив префабов врагов
+    public Transform[] spawnPoints;   // Точки для спавна врагов
+    public float spawnInterval = 5f;  // Интервал между спавнами врагов
+    public int maxEnemies = 10;       // Максимальное количество врагов на сцене
     private int currentEnemyCount = 0; // Текущее количество врагов
     private List<bool> spawnPointsOccupied; // Список для отслеживания занятых точек спавна
 
@@ -41,6 +41,9 @@ public class EnemyManager : MonoBehaviour
                 // Проверяем, что позиция спавна правильная
                 Debug.Log($"Заспавнено на точке: {spawnPoint.position}");
 
+                // Случайным образом выбираем врага из массива префабов
+                GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
                 // Создаем врага в выбранной точке
                 Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
                 currentEnemyCount++; // Увеличиваем счётчик врагов
@@ -53,13 +56,10 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Метод для уменьшения текущего количества врагов
-    public void OnEnemyDeath(Transform spawnPoint)
+    public void OnEnemyDeath()
     {
         // Уменьшаем количество врагов
         currentEnemyCount--;
         Debug.Log($"Враг погиб. Текущее количество врагов: {currentEnemyCount}");
-
-        // Освобождение точки не нужно, так как точка заблокирована навсегда
-        // spawnPointsOccupied[i] = false; -- точка больше не освобождается
     }
 }

@@ -9046,7 +9046,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc87c3c312ebf7c42964824cc4d35e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1729427797401686987, guid: 4642040e14328ad4d840813a31e10d72, type: 3}
+  enemyPrefabs:
+  - {fileID: 1729427797401686987, guid: 4642040e14328ad4d840813a31e10d72, type: 3}
+  - {fileID: 173069651474077230, guid: b417e1c6c8ec2b9459d8aa04e20f6dc5, type: 3}
+  - {fileID: 6266940445160150222, guid: af577a6200af7a246a7b3a261814bd4f, type: 3}
   spawnPoints:
   - {fileID: 529026301}
   - {fileID: 113918877}

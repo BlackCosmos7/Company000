@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0087228fb2c074ab4dac1308634f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  damage: 1
+  health: 15
+  damage: 2
 --- !u!95 &7630168569780671172
 Animator:
   serializedVersion: 5
